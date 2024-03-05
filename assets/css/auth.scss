@@ -1,0 +1,60 @@
+.oval_img {
+  z-index: -999;
+}
+
+.underline_hr {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #000;
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+}
+
+.underline_hr span {
+  background: #fff;
+  padding: 0 10px;
+}
+
+.wrapper .input-data {
+  height: 40px;
+  width: 100%;
+  position: relative;
+}
+
+.wrapper .input-data input {
+  height: 100%;
+  width: 100%;
+  border: none;
+  font-family: 'Nunito';
+  font-size: 17px;
+  // outline-color: #6782e1;
+  outline-color: #cccccc;
+  text-indent: 10px;
+}
+
+.input-data input:focus ~ label,
+.input-data input:valid ~ label {
+  transform: translateY(-20px);
+  font-size: 15px;
+  font-family: 'Nunito';
+  color: #000;
+}
+
+.wrapper .input-data label {
+  position: absolute;
+  bottom: 6px;
+  left: 0.8rem;
+  color: #000;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  background-color: white;
+
+  img {
+    pointer-events: auto;
+  }
+}
+
+.input-data input:focus ~ .underline:before,
+.input-data input:valid ~ .underline:before {
+  transform: scaleX(1);
+}

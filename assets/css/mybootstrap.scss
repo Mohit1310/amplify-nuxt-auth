@@ -1,0 +1,342 @@
+@font-face {
+  font-family: 'Poppins';
+  src: url('../fonts/Poppins/Poppins-Regular.ttf');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Poppins-Bold';
+  src: url('../fonts/Poppins/Poppins-Bold.ttf');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins-Light';
+  src: url('../fonts/Poppins/Poppins-Light.ttf');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('../fonts/nunito.regular.ttf');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Aileron';
+  src: url('~/assets/fonts/Aileron-Black.otf');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DMSans';
+  src: url('~/assets/fonts/DMSans-VariableFont_opsz,wght.ttf');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('~/assets/fonts/Montserrat-VariableFont_wght.ttf');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Neue Machina';
+  src: url('~/assets/fonts/NeueMachina-Regular.otf');
+  font-display: swap;
+}
+
+// @font-face {
+//   font-family: loraRegular;
+//   src: url('../fonts/Lora-Regular.ttf');
+// }
+// All of your custom SCSS variables go first
+$secondary: hsl(227, 86%, 86%);
+$primary: #086ee5;
+$danger: #ff5c5c;
+$success: #14b365;
+$font-size-root: 20px;
+$font-weight-bold: 500;
+$font-family-sans-serif: Poppins;
+
+:root {
+  --primary: #{$primary};
+  --dark-blue: #3824cd;
+  --light-blue: #5271ff;
+  --light-black: #555657;
+}
+
+.font_family_roboto {
+  font-family: 'Roboto';
+}
+
+.font_family_poppins_bold {
+  font-family: 'Poppins-Bold';
+}
+.font_family_poppins_light {
+  font-family: 'Poppins-Light';
+}
+
+.font_family_nunito {
+  font-family: 'Nunito';
+}
+
+.font_family_aileron {
+  font-family: 'Aileron', sans-serif;
+}
+.font_family_dmsans {
+  font-family: 'DMSans', sans-serif;
+}
+.font_family_montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+.font_family_Neuemachina {
+  font-family: 'Neue Machina', sans-serif;
+}
+
+.font_size_64 {
+  font-size: 64px;
+}
+
+.font_size_50 {
+  font-size: 50px;
+}
+
+.font_size_45 {
+  font-size: 45px;
+}
+
+.font_size_36 {
+  font-size: 36px;
+}
+
+.font_size_32 {
+  font-size: 32px;
+}
+
+.font_size_30 {
+  font-size: 30px;
+}
+
+.font_size_28 {
+  font-size: 28px;
+}
+
+.font_size_24 {
+  font-size: 24px;
+}
+
+.font_size_23 {
+  font-size: 23px;
+}
+
+.font_size_22 {
+  font-size: 22px;
+}
+
+.font_size_20 {
+  font-size: 20px;
+}
+
+.font_size_18 {
+  font-size: 18px;
+}
+
+.font_size_16 {
+  font-size: 16px;
+}
+
+.font_size_14 {
+  font-size: 14px;
+}
+
+.font_size_12 {
+  font-size: 12px;
+}
+
+.font_size_10 {
+  font-size: 10px;
+}
+
+.cursor_pointer {
+  cursor: pointer;
+}
+
+.shawdow_card {
+  -webkit-box-shadow: 2px 2px 20px rgba(103, 130, 225, 0.18);
+  -moz-box-shadow: 2px 2px 20px rgba(103, 130, 225, 0.18);
+  box-shadow: 2px 2px 20px rgba(103, 130, 225, 0.18);
+}
+
+.blue_button {
+  background-color: var(--light-blue);
+  color: white;
+  padding: 0.5rem 2rem;
+  border-radius: 2rem;
+  border: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Aileron', sans-serif;
+}
+
+.span_blue_color {
+  color: var(--light-blue) !important;
+}
+
+.z_index_1 {
+  z-index: 1;
+}
+
+// body {
+//   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
+//     env(safe-area-inset-left);
+// }
+
+@import '~bootstrap/scss/bootstrap';
+
+$mockcertified-font-sizes: (
+  // 1: 5rem,
+  // 2: 4.5rem,
+  // 3: 4rem,
+  // 4: 3.5rem,
+  // 5: 3rem,
+  // 6: 2.5rem,
+  100: 100px,
+  80: 80px,
+  75: 75px,
+  70: 70px,
+  64: 64px,
+  60: 60px,
+  58: 58px,
+  56: 56px,
+  54: 54px,
+  50: 50px,
+  46: 46px,
+  44: 44px,
+  42: 42px,
+  40: 40px,
+  38: 38px,
+  36: 36px,
+  34: 34px,
+  32: 32px,
+  30: 30px,
+  28: 28px,
+  26: 26px,
+  24: 24px,
+  22: 22px,
+  20: 20px,
+  18: 18px,
+  16: 16px,
+  14: 14px,
+  13: 13px,
+  12: 12px,
+  10: 10px,
+  9: 9px,
+  8: 8px,
+  4: 4px
+);
+
+// Generate base font size classes
+@each $size, $value in $mockcertified-font-sizes {
+  .font-size-#{$size} {
+    font-size: $value;
+    /* Add any additional styles you want for the class */
+  }
+}
+
+// Generate responsive variations for each breakpoint
+@each $breakpoint, $min-width in $grid-breakpoints {
+  $breakpoint-abbreviation: str-replace($breakpoint, 'min-', '');
+  @each $size, $value in $mockcertified-font-sizes {
+    .font-size-#{$breakpoint-abbreviation}-#{$size} {
+      @media (min-width: $min-width) {
+        // @extend .fw-bold; // Example: Extend Bootstrap's .fw-bold class
+        font-size: $value;
+        /* Add any additional styles for the responsive class */
+      }
+    }
+  }
+}
+
+// generate classess for width from (1 -100) in %
+@for $i from 1 through 100 {
+  .width-mock-#{$i} {
+    width: unquote('#{$i}%');
+    /* Add any additional styles you want for the class */
+  }
+}
+
+// Generate responsive variations for each breakpoint
+@each $breakpoint, $min-width in $grid-breakpoints {
+  $breakpoint-abbreviation: str-replace($breakpoint, 'min-', '');
+  @for $i from 1 through 100 {
+    .width-mock-#{$breakpoint-abbreviation}-#{$i} {
+      @media (min-width: $min-width) {
+        // @extend .fw-bold; // Example: Extend Bootstrap's .fw-bold class
+        width: unquote('#{$i}%');
+        /* Add any additional styles for the responsive class */
+      }
+    }
+  }
+}
+
+// generate classess for width from (1 -100) in px
+@for $i from 1 through 700 {
+  .width-mock-px-#{$i} {
+    width: $i + px;
+    /* Add any additional styles you want for the class */
+  }
+}
+
+// Generate responsive variations for each breakpoint
+@each $breakpoint, $min-width in $grid-breakpoints {
+  $breakpoint-abbreviation: str-replace($breakpoint, 'min-', '');
+  @for $i from 1 through 700 {
+    .width-mock-px-#{$breakpoint-abbreviation}-#{$i} {
+      @media (min-width: $min-width) {
+        // @extend .fw-bold; // Example: Extend Bootstrap's .fw-bold class
+        width: $i + px;
+        /* Add any additional styles for the responsive class */
+      }
+    }
+  }
+}
+
+// generate classess for height from (1 -100) in px
+@for $i from 1 through 700 {
+  .height-mock-px-#{$i} {
+    height: $i + px;
+    /* Add any additional styles you want for the class */
+  }
+}
+
+// Generate responsive variations for each breakpoint
+@each $breakpoint, $min-width in $grid-breakpoints {
+  $breakpoint-abbreviation: str-replace($breakpoint, 'min-', '');
+  @for $i from 1 through 700 {
+    .height-mock-px-#{$breakpoint-abbreviation}-#{$i} {
+      @media (min-width: $min-width) {
+        // @extend .fw-bold; // Example: Extend Bootstrap's .fw-bold class
+        height: $i + px;
+        /* Add any additional styles for the responsive class */
+      }
+    }
+  }
+}
+
+.width-fit {
+  width: fit-content;
+}
+.fw-800 {
+  font-weight: 800;
+}
+
+.object-fit {
+  object-fit: cover;
+}
+
+.h-w-100 {
+  width: 100%;
+  height: 100%;
+}
+
+.section_margin {
+  margin-top: 9rem;
+  margin-bottom: 9rem;
+}

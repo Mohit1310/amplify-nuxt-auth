@@ -1,0 +1,39 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@aws-sdk/client-ses": "^3.185.0",
+    "@pinia/nuxt": "^0.5.1",
+    "aos": "^2.3.4",
+    "aws-amplify": "^4.3.46",
+    "aws-amplify-vue": "^2.1.9",
+    "aws-sdk": "^2.1230.0",
+    "axios": "^1.6.7",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "nuxt": "^3.10.2",
+    "nuxt-sweetalert2": "^1.0.0",
+    "pinia": "^2.1.7",
+    "stripe": "^14.17.0",
+    "uuid": "^9.0.1",
+    "vue": "^3.4.19",
+    "vue-apexcharts": "^1.6.2",
+    "vue-carousel": "^0.18.0",
+    "vue-router": "^4.2.5",
+    "vue-slick-carousel": "^1.0.6",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "sass": "^1.71.1",
+    "sass-loader": "^14.1.1",
+    "webpack": "^5.90.3"
+  }
+}

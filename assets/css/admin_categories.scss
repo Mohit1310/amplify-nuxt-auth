@@ -1,0 +1,55 @@
+@import '~/assets/css/bootstrapBreakpoint';
+
+.wrapper .input-data {
+  // height: 40px;
+  width: 100%;
+  position: relative;
+}
+
+.wrapper .input-data input {
+  height: 100%;
+  width: 100%;
+  border: none;
+  font-size: 17px;
+  outline-color: #6782e1;
+}
+
+.input-data input:focus ~ label,
+.input-data input:valid ~ label {
+  transform: translateY(-20px);
+  font-size: 15px;
+  color: #000;
+}
+
+.wrapper .input-data label {
+  position: absolute;
+  top: 3px;
+  left: 0.8rem;
+  color: #000;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  background-color: white;
+}
+
+.input-data input:focus ~ .underline:before,
+.input-data input:valid ~ .underline:before {
+  transform: scaleX(1);
+}
+
+.wrapper .input-data label {
+  img {
+    pointer-events: auto;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .container_width {
+    width: 50%;
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  .admin_category_title {
+    font-size: 18px;
+  }
+}

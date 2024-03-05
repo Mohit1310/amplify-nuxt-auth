@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "auth": {
+      "mobileappmarketplacee1e8cc85": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    },
+    "api": {
+      "mobileappmarketplace": [
+        "Query",
+        "Mutation",
+        "Subscription"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}
