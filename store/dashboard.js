@@ -21,15 +21,15 @@ export const useDashboardStore = defineStore("dashboard", {
           authMode: "AMAZON_COGNITO_USER_POOLS",
         });
 
-        console.log("userTestData: " + userTestData.data.listUsers);
+        // console.log("userTestData: " + userTestData.data.listUsers);
         const testCollection = userTestData?.data?.listUsers?.items;
         this.testCollection = testCollection;
-        console.log("testCollection: " + testCollection);
+        // console.log("testCollection: " + testCollection);
 
         // commit("setuserData", userTestData.data.getUser);
-        console.log("userTestData " + userTestData.data.getUser);
+        // console.log("userTestData " + userTestData.data.getUser);
         this.setuserData(userTestData.data.getUser);
-        console.log(userTestData.data.getUser);
+        // console.log(userTestData.data.getUser);
 
         // commit("SET_LOADER", false, { root: true });
         return userTestData;

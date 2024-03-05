@@ -13,7 +13,7 @@ const signOut = useAuthStore();
 const dashboard = useDashboardStore();
 // const userId = "3f85d5ce-b704-497a-911a-2c80d3c3eb9a";
 const userId = "ed8604fc-0f58-4b03-964e-80d997e93b90";
-console.log(dashboard.getTestData(userId));
+// console.log(dashboard.getTestData(userId));
 
 const router = useRouter();
 

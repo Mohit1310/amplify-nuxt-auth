@@ -64,9 +64,8 @@ export const useAuthStore = defineStore("auth", {
 
     async register({ email, rpassword, first_name, last_name }) {
       const username = email;
-      console.log("username in auth: " + username);
+      console.log("email in register: " + username);
       const password = rpassword;
-      console.log("password: " + password);
       const given_name = first_name;
       const family_name = last_name;
       const mainStore = useMainStore();
@@ -179,15 +178,16 @@ export const useAuthStore = defineStore("auth", {
 
     async login({ email, password }) {
       console.log("Email in login: " + email);
+      const username = email;
       const mainStore = useMainStore();
       //   commit('SET_LOADER', true, { root: true });
       mainStore.SET_LOADER(true);
 
       try {
         // window.localStorage.clear();
-        console.log("above user" + email);
-        const user = await Auth.signIn(email, password);
-        console.log("User: " + user);
+        console.log("above user: " + email);
+        const user = await Auth.signIn(username, password);
+        // console.log("User: " + user);
         const jwtToken = user.signInUserSession.accessToken.jwtToken;
 
         const userRole =
@@ -199,7 +199,7 @@ export const useAuthStore = defineStore("auth", {
 
         const userGraphql = await API.graphql({
           query: getUser,
-          variables: { id: user.email },
+          variables: { id: user.username },
           authMode: "AMAZON_COGNITO_USER_POOLS",
         });
         let userData = userGraphql.data.getUser;

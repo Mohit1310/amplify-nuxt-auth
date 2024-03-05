@@ -159,7 +159,10 @@ const confirmLocal = async () => {
       return;
     }
     // Till now User is present only in cognito is not in DB. In login function (action file) we are making user object in DB
-    const form = { email: registerForm.email, password: registerForm.password };
+    const form = {
+      email: registerForm.value.email,
+      password: registerForm.value.password,
+    };
     await login(form);
     // this.changeBodyStyle();
     router.push("/homepage");

@@ -6,12 +6,8 @@ import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth";
 const user = ref(null);
 const customState = ref(null);
 
-const signIn = () => {
-  Auth.federatedSignIn();
-};
-
-const signInWithProvider = (provider) => {
-  Auth.federatedSignIn({ provider });
+const signInWithProvider = () => {
+  Auth.federatedSignIn({ provider: CognitoHostedUIIdentityProvider.Google });
 };
 
 const signOut = () => {
@@ -58,10 +54,7 @@ Hub.listen("auth", (data) => {
 
 <template>
   <div class="App">
-    <button @click="signIn">Open Hosted UI</button>
-    <button @click="signInWithProvider(CognitoHostedUIIdentityProvider.Google)">
-      Open Google
-    </button>
+    <button @click="signInWithProvider">Open Google</button>
     <button @click="signOut">Sign Out</button>
     <div>{{ user && user.getUsername() }}</div>
   </div>

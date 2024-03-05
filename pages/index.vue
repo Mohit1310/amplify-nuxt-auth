@@ -13,7 +13,7 @@
       </li>
     </ul> -->
   </div>
-  <!-- <LoginGoogle /> -->
+  <LoginGoogle />
   <LoginInner />
   <SignUpInner />
 </template>
