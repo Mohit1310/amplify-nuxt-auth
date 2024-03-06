@@ -12,16 +12,19 @@ import { useAuthStore } from "./auth";
 
 export const useBuyerStore = defineStore("buyer", {
   state: () => ({
-    catItems: [],
+    cartItems: [],
   }),
 
   actions: {
     async buyNow(payload) {
+      console.log("in buyNow");
       const mainStore = useMainStore();
       const authStore = useAuthStore();
       const jwtToken = authStore.jwtToken;
       const testId = payload.testId;
+      console.log(testId);
       const promocode = payload.promocode ? payload.promocode : false;
+      console.log(promocode);
       //   commit("SET_LOADER", true, { root: true });
       mainStore.SET_LOADER(true);
 
@@ -52,15 +55,15 @@ export const useBuyerStore = defineStore("buyer", {
         // commit("SET_LOADER", false, { root: true });
         mainStore.SET_LOADER(false);
         if (parsedData.statusCode !== 200) {
-          this.$swal.fire({
-            toast: true,
-            position: "top-end",
-            icon: "error",
-            title: "Something went wrong",
-            showConfirmButton: false,
-            timerProgressBar: true,
-            timer: 7000,
-          });
+          // this.$swal.fire({
+          //   toast: true,
+          //   position: "top-end",
+          //   icon: "error",
+          //   title: "Something went wrong",
+          //   showConfirmButton: false,
+          //   timerProgressBar: true,
+          //   timer: 7000,
+          // });
           return false;
         }
         return parsedData.body.url;
@@ -68,15 +71,15 @@ export const useBuyerStore = defineStore("buyer", {
         console.log("Error buyNow: " + err);
         // commit("SET_LOADER", false, { root: true });
         mainStore.SET_LOADER(false);
-        this.$swal.fire({
-          toast: true,
-          position: "top-end",
-          icon: "error",
-          title: "Something went wrong",
-          showConfirmButton: false,
-          timerProgressBar: true,
-          timer: 7000,
-        });
+        // this.$swal.fire({
+        //   toast: true,
+        //   position: "top-end",
+        //   icon: "error",
+        //   title: "Something went wrong",
+        //   showConfirmButton: false,
+        //   timerProgressBar: true,
+        //   timer: 7000,
+        // });
         return false;
       }
     },
@@ -190,31 +193,32 @@ export const useBuyerStore = defineStore("buyer", {
             input,
           },
         });
+        console.log("createPurchasedTestData: " + createPurchasedTestData);
         // commit("SET_LOADER", false, { root: true });
         mainStore.SET_LOADER(false);
-        this.$swal.fire({
-          toast: true,
-          position: "top-end",
-          icon: "success",
-          title: "Successfully purchased",
-          showConfirmButton: false,
-          timerProgressBar: true,
-          timer: 7000,
-        });
+        // this.$swal.fire({
+        //   toast: true,
+        //   position: "top-end",
+        //   icon: "success",
+        //   title: "Successfully purchased",
+        //   showConfirmButton: false,
+        //   timerProgressBar: true,
+        //   timer: 7000,
+        // });
         return true;
       } catch (err) {
         console.log("Error buyTestFree: " + err);
         // commit("SET_LOADER", false, { root: true });
         mainStore.SET_LOADER(false);
-        this.$swal.fire({
-          toast: true,
-          position: "top-end",
-          icon: "error",
-          title: "Something went wrong",
-          showConfirmButton: false,
-          timerProgressBar: true,
-          timer: 7000,
-        });
+        // this.$swal.fire({
+        //   toast: true,
+        //   position: "top-end",
+        //   icon: "error",
+        //   title: "Something went wrong",
+        //   showConfirmButton: false,
+        //   timerProgressBar: true,
+        //   timer: 7000,
+        // });
         return false;
       }
     },
@@ -324,28 +328,28 @@ export const useBuyerStore = defineStore("buyer", {
       }
     },
 
-    async addToCart(item) {
-      this.cartItems.push(item);
-      await Storage.set({
-        key: "cartItems",
-        value: JSON.stringify(state.cartItems),
-      });
-    },
+    // async addToCart(item) {
+    //   this.cartItems.push(item);
+    //   await Storage.set({
+    //     key: "cartItems",
+    //     value: JSON.stringify(state.cartItems),
+    //   });
+    // },
 
-    async removeCartItem(itemId) {
-      this.cartItems = this.cartItems.filter((item) => item.id !== itemId);
-      await Storage.set({
-        key: "cartItems",
-        value: JSON.stringify(state.cartItems),
-      });
-    },
+    // async removeCartItem(itemId) {
+    //   this.cartItems = this.cartItems.filter((item) => item.id !== itemId);
+    //   await Storage.set({
+    //     key: "cartItems",
+    //     value: JSON.stringify(state.cartItems),
+    //   });
+    // },
 
-    async clearCart() {
-      this.cartItems = [];
-      await Storage.set({
-        key: "cartItems",
-        value: JSON.stringify(state.cartItems),
-      });
-    },
+    // async clearCart() {
+    //   this.cartItems = [];
+    //   await Storage.set({
+    //     key: "cartItems",
+    //     value: JSON.stringify(state.cartItems),
+    //   });
+    // },
   },
 });

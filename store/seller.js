@@ -17,7 +17,7 @@ import { useMainStore } from "./store";
 import { useAuthStore } from "./auth";
 import { useTestManagementStore } from "./testManagement";
 
-export const sellerStore = defineStore("seller", {
+export const useSellerStore = defineStore("seller", {
   state: () => ({}),
   actions: {
     async createTest(payload) {
@@ -359,28 +359,28 @@ export const sellerStore = defineStore("seller", {
       }
     },
 
-    async addToCart(state, item) {
-      state.cartItems.push(item);
-      await Storage.set({
-        key: "cartItems",
-        value: JSON.stringify(state.cartItems),
-      });
-    },
+    // async addToCart(state, item) {
+    //   state.cartItems.push(item);
+    //   await Storage.set({
+    //     key: "cartItems",
+    //     value: JSON.stringify(state.cartItems),
+    //   });
+    // },
 
-    async removeCartItem(state, itemId) {
-      state.cartItems = state.cartItems.filter((item) => item.id !== itemId);
-      await Storage.set({
-        key: "cartItems",
-        value: JSON.stringify(state.cartItems),
-      });
-    },
+    // async removeCartItem(state, itemId) {
+    //   state.cartItems = state.cartItems.filter((item) => item.id !== itemId);
+    //   await Storage.set({
+    //     key: "cartItems",
+    //     value: JSON.stringify(state.cartItems),
+    //   });
+    // },
 
-    async clearCart(state) {
-      state.cartItems = [];
-      await Storage.set({
-        key: "cartItems",
-        value: JSON.stringify(state.cartItems),
-      });
-    },
+    // async clearCart(state) {
+    //   state.cartItems = [];
+    //   await Storage.set({
+    //     key: "cartItems",
+    //     value: JSON.stringify(state.cartItems),
+    //   });
+    // },
   },
 });

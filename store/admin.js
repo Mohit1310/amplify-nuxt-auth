@@ -59,6 +59,7 @@ export const useAdminStore = defineStore("admin", {
 
         // Set the allTests state
         this.setAllTests(sortedAllTests);
+        console.log("sortedAllTests", sortedAllTests);
 
         // Reset loader state
         mainStore.SET_LOADER(false);
@@ -107,30 +108,33 @@ export const useAdminStore = defineStore("admin", {
         return false;
       }
 
+      console.log(status);
+
       try {
         let input = {
           id: test_id,
           status,
         };
-        if (rejectDescription) {
-          input = {
-            ...input,
-            reject_description: rejectDescription,
-          };
-        }
+        // if (rejectDescription) {
+        //   input = {
+        //     ...input,
+        //     reject_description: rejectDescription,
+        //   };
+        // }
         await API.graphql({
           query: updateTestManager,
           variables: { input },
           authMode: "AMAZON_COGNITO_USER_POOLS",
         });
+        console.log("inside approveRejectTest at end of try");
         // await dispatch('getAllTests');
         // commit('SET_LOADER', false, { root: true });
 
-        await this.getAllTests();
+        // await this.getAllTests();
         mainStore.SET_LOADER(false);
         return true;
       } catch (err) {
-        console.log("Error approveRejectTest: " + err);
+        console.error("Error approveRejectTest: " + err);
         // commit('SET_LOADER', false, { root: true });
         mainStore.SET_LOADER(false);
         // this.$swal.fire({
@@ -160,23 +164,28 @@ export const useAdminStore = defineStore("admin", {
           .replace(/ /g, "-")
           .replace(/[^\w-]+/g, "");
 
+        // console.log(categorySlug + categoryDetail.name);
+
         let isSlugAvailable = false;
         // isSlugAvailable = await dispatch('getCategoryBySlug', categorySlug);
         isSlugAvailable = this.getCategoryBySlug(categorySlug);
+        console.log("isSlugAvailable: " + isSlugAvailable);
         if (isSlugAvailable) {
           // commit('SET_LOADER', false, { root: true });
+          console.log("in isSlugAvailable");
           mainStore.SET_LOADER(false);
-          this.$swal.fire({
-            toast: true,
-            position: "top-end",
-            icon: "error",
-            title: `${categoryDetail.name} category is already exist`,
-            showConfirmButton: false,
-            timerProgressBar: true,
-            timer: 7000,
-          });
+          // this.$swal.fire({
+          //   toast: true,
+          //   position: "top-end",
+          //   icon: "error",
+          //   title: `${categoryDetail.name} category is already exist`,
+          //   showConfirmButton: false,
+          //   timerProgressBar: true,
+          //   timer: 7000,
+          // });
           return false;
         }
+        console.log("after if isSlugAvailable");
 
         const input = {
           name: categoryDetail.name,
@@ -191,6 +200,7 @@ export const useAdminStore = defineStore("admin", {
         });
 
         const categoryId = createdCat.data.createCategory.id;
+        console.log("categoryId: " + categoryId);
 
         let isValid;
         for (let i = 0; i < categoryDetail.subCat.length; i++) {
@@ -213,7 +223,8 @@ export const useAdminStore = defineStore("admin", {
         // await dispatch('testManagement/getAllCategories', false, {
         //   root: true,
         // });
-        await testManagement.getAllCategories(false);
+        await testManagement.getAllCategories(false); // no arguments need to be passed
+        console.log("createNewCategory: " + testManagement.getAllCategories());
 
         // commit('SET_LOADER', false, { root: true });
         mainStore.SET_LOADER(false);
@@ -222,15 +233,15 @@ export const useAdminStore = defineStore("admin", {
         console.log("Error createNewCategory: " + err);
         // commit('SET_LOADER', false, { root: true });
         mainStore.SET_LOADER(false);
-        this.$swal.fire({
-          toast: true,
-          position: "top-end",
-          icon: "error",
-          title: "Something went wrong",
-          showConfirmButton: false,
-          timerProgressBar: true,
-          timer: 7000,
-        });
+        // this.$swal.fire({
+        //   toast: true,
+        //   position: "top-end",
+        //   icon: "error",
+        //   title: "Something went wrong",
+        //   showConfirmButton: false,
+        //   timerProgressBar: true,
+        //   timer: 7000,
+        // });
         return false;
       }
     },
@@ -461,10 +472,12 @@ export const useAdminStore = defineStore("admin", {
       // Implement the function
       const mainStore = useMainStore();
       const slug = payload;
+      console.log("slug in getCategoryBySlug: " + slug);
       try {
         const filter = {
           slug: { eq: slug },
         };
+        console.log("filter: " + filter);
         const testQueryData = await API.graphql({
           query: listCategories,
           variables: { filter, limit: 10000 },
@@ -472,8 +485,10 @@ export const useAdminStore = defineStore("admin", {
         const categoryArray = testQueryData.data.listCategories.items;
         if (categoryArray.length && categoryArray[0].id) {
           // Slug is available
+          console.log("inside categoryArray if");
           return categoryArray[0];
         }
+        console.log("categoryArray: " + categoryArray);
         // Slug is not available
         return false;
       } catch (err) {
