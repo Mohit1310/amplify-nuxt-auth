@@ -32,6 +32,7 @@ import {
   createSearchFeedback,
 } from "~/graphql/mutations";
 import { useMainStore } from "./store";
+import { useAuthStore } from "./auth";
 // import { useAuthStore } from "./auth";
 
 export const useTestManagementStore = defineStore("testManagement", {
@@ -45,10 +46,10 @@ export const useTestManagementStore = defineStore("testManagement", {
 
   actions: {
     async isUserPendingApprovalTests() {
-      // const authStore = useAuthStore();
+      const authStore = useAuthStore();
       try {
-        // const user_id = authStore.user.id; //after converting auth
-        const user_id = "ed8604fc-0f58-4b03-964e-80d997e93b90"; //after converting auth
+        const user_id = authStore.user.id; //after converting auth
+        // const user_id = "ed8604fc-0f58-4b03-964e-80d997e93b90"; //after converting auth
         const userTestsData = await API.graphql({
           query: getUserPendingApprovalTests,
           variables: { id: user_id },
@@ -67,8 +68,11 @@ export const useTestManagementStore = defineStore("testManagement", {
       }
     },
 
-    async getUserTests({ rootState }) {
-      const user_id = rootState.auth.user.id;
+    async getUserTests() {
+      console.log("in getUserTests");
+      const authStore = useAuthStore();
+      const user_id = authStore?.user?.id;
+      console.log("user id: " + user_id);
       const mainStore = useMainStore();
       // commit('SET_LOADER', true, { root: true });
       mainStore.SET_LOADER(true);
@@ -139,22 +143,24 @@ export const useTestManagementStore = defineStore("testManagement", {
         const sortedAllCreatedTests = await this.sortBycreatedAt(
           allCreatedTests
         );
+        console.log("all created tests: " + allCreatedTests);
         mainStore.setAllCreatedTests(sortedAllCreatedTests);
         mainStore.SET_LOADER(false);
 
         return allPurchasedTests;
       } catch (err) {
+        console.log("error in getUserTests", err);
         // commit('SET_LOADER', false, { root: true });
         mainStore.SET_LOADER(false);
-        this.$swal.fire({
-          toast: true,
-          position: "top-end",
-          icon: "error",
-          title: "Something went wrong",
-          showConfirmButton: false,
-          timerProgressBar: true,
-          timer: 7000,
-        });
+        // this.$swal.fire({
+        //   toast: true,
+        //   position: "top-end",
+        //   icon: "error",
+        //   title: "Something went wrong",
+        //   showConfirmButton: false,
+        //   timerProgressBar: true,
+        //   timer: 7000,
+        // });
       }
     },
 

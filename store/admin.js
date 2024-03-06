@@ -133,15 +133,15 @@ export const useAdminStore = defineStore("admin", {
         console.log("Error approveRejectTest: " + err);
         // commit('SET_LOADER', false, { root: true });
         mainStore.SET_LOADER(false);
-        this.$swal.fire({
-          toast: true,
-          position: "top-end",
-          icon: "error",
-          title: "Something went wrong",
-          showConfirmButton: false,
-          timerProgressBar: true,
-          timer: 7000,
-        });
+        // this.$swal.fire({
+        //   toast: true,
+        //   position: "top-end",
+        //   icon: "error",
+        //   title: "Something went wrong",
+        //   showConfirmButton: false,
+        //   timerProgressBar: true,
+        //   timer: 7000,
+        // });
         return false;
       }
     },

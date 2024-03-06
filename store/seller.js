@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { generateClient } from "aws-amplify/api";
+import { API } from "aws-amplify";
 // import { Storage } from "@capacitor/storage";
 import {
   onboardingStripe,
@@ -24,7 +24,6 @@ export const sellerStore = defineStore("seller", {
       const mainStore = useMainStore();
       const authStore = useAuthStore();
       const testManagement = useTestManagementStore();
-      const client = generateClient();
       const user_id = authStore.user.id;
       const testDetail = payload.testDetail;
       const questionList = payload.questionList;
@@ -65,7 +64,7 @@ export const sellerStore = defineStore("seller", {
           blog_link: testDetail.blog_link,
           slug: testSlug,
         };
-        const createdtest = await client.graphql({
+        const createdtest = await API.graphql({
           query: createTestManager,
           variables: { input },
           authMode: "AMAZON_COGNITO_USER_POOLS",
@@ -115,7 +114,6 @@ export const sellerStore = defineStore("seller", {
     },
 
     async createQuestion(payload) {
-      const client = generateClient();
       const test_id = payload.testId;
       const questionDetail = payload.questionDetail;
       try {
@@ -129,7 +127,7 @@ export const sellerStore = defineStore("seller", {
           marks: 1,
         };
 
-        await client.graphql({
+        await API.graphql({
           query: createQuestion,
           variables: { input },
           authMode: "AMAZON_COGNITO_USER_POOLS",
@@ -152,12 +150,11 @@ export const sellerStore = defineStore("seller", {
 
     async stripeOnboarding() {
       const mainStore = useMainStore();
-      const client = generateClient();
       const authStore = useAuthStore();
       //   commit("SET_LOADER", true, { root: true });
       mainStore.SET_LOADER(true);
       try {
-        const stripeURLData = await client.graphql({
+        const stripeURLData = await API.graphql({
           query: onboardingStripe,
         });
         const parsedData = JSON.parse(stripeURLData.data.onboardingStripe);
@@ -168,7 +165,7 @@ export const sellerStore = defineStore("seller", {
           id: user_id,
           stripe_seller_id,
         };
-        await client.graphql({
+        await API.graphql({
           query: updateUser,
           variables: { input },
           authMode: "AMAZON_COGNITO_USER_POOLS",
@@ -199,12 +196,11 @@ export const sellerStore = defineStore("seller", {
     async getBalanceDetail() {
       const mainStore = useMainStore();
       const authStore = useAuthStore();
-      const client = generateClient();
       const seller_id = authStore.user.stripe_seller_id;
       //   commit("SET_LOADER", true, { root: true });
 
       try {
-        const getBanalceData = await client.graphql({
+        const getBanalceData = await API.graphql({
           query: getBalance,
           variables: {
             seller_id,
@@ -235,12 +231,11 @@ export const sellerStore = defineStore("seller", {
     async redirectExpressDashboard() {
       const mainStore = useMainStore();
       const authStore = useAuthStore();
-      const client = generateClient();
       const seller_id = authStore.user.stripe_seller_id;
       // commit('SET_LOADER', true, { root: true });
       mainStore.SET_LOADER(true);
       try {
-        const getLink = await client.graphql({
+        const getLink = await API.graphql({
           query: redirectPayoutDashboard,
           variables: {
             seller_id,
@@ -282,12 +277,11 @@ export const sellerStore = defineStore("seller", {
     async getStripeIdStatus() {
       const mainStore = useMainStore();
       const authStore = useAuthStore();
-      const client = generateClient();
       const seller_id = authStore.user.stripe_seller_id;
       //   commit("SET_LOADER", true, { root: true });
       mainStore.SET_LOADER(true);
       try {
-        const getStatus = await client.graphql({
+        const getStatus = await API.graphql({
           query: getStripeIdStatus,
           variables: {
             seller_id,
@@ -318,7 +312,6 @@ export const sellerStore = defineStore("seller", {
 
     async editTestDescription(payload) {
       const mainStore = useMainStore();
-      const client = generateClient();
       // const seller_id = rootState.auth.user.stripe_seller_id;
       //   commit("SET_LOADER", true, { root: true });
       mainStore.SET_LOADER(true);
@@ -327,7 +320,7 @@ export const sellerStore = defineStore("seller", {
           id: payload.testId,
           description: payload.testDescription,
         };
-        await client.graphql({
+        await API.graphql({
           query: updateTestManager,
           variables: { input },
           authMode: "AMAZON_COGNITO_USER_POOLS",
