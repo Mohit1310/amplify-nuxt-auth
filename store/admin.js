@@ -49,6 +49,7 @@ export const useAdminStore = defineStore("admin", {
 
         // Extract all tests from the response
         const allTests = allTestsData.data.listTestManagers.items;
+        console.log("inside action allTests", allTests);
         // const sortedAllTests = await dispatch('testManagement/sortBycreatedAt', allTests, {
         //   root: true,
         // });
@@ -63,7 +64,7 @@ export const useAdminStore = defineStore("admin", {
 
         // Reset loader state
         mainStore.SET_LOADER(false);
-
+        console.log("inside action getAlltest", sortedAllTests);
         return true;
       } catch (err) {
         console.log("Error getAllTests: " + err);

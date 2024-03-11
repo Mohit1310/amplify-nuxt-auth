@@ -28,12 +28,12 @@ const payload = {
   testId: "0bfc21ef-f8b3-46cc-b075-70d3b88f35ad",
   status: "approve",
   rejectDescription: null,
-  name: "Google Cloud M",
+  name: "AWS B 8",
   imageUrl:
     "https://i.pcmag.com/imagery/reviews/02yVL9f8Jw1atwoG6sgFZDH-7..v1569482492.jpg",
   subCat: [
     {
-      name: "GC m",
+      name: "AWS SB 3",
       imageUrl:
         "https://i.pcmag.com/imagery/reviews/02yVL9f8Jw1atwoG6sgFZDH-7..v1569482492.jpg",
     },
@@ -50,6 +50,25 @@ const userLogOut = async () => {
     router.push("/");
   }
 };
+
+onMounted(async () => {
+  console.log("going in try");
+  try {
+    console.log("inside try", adminStore.allTests.length);
+    // Fetch categories
+    if (!adminStore.allTests.length) {
+      console.log("inside alltest when length is not");
+      await getAllTests();
+    }
+    // Once data is fetched, update categories and set loading to false
+    allTestsDemo.value = adminStore.allTests;
+    console.log("inside the admin all test ", allTestsDemo.value);
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+    // Handle error here (e.g., show error message)
+    loading.value = false; // Ensure loading indicator is turned off even in case of error
+  }
+});
 </script>
 
 <style lang="scss" scoped></style>
